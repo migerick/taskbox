@@ -12,7 +12,7 @@ import {TaskM} from "../components/Task.tsx";
 const TaskBoxData = {
     tasks: [] as TaskM[],
     status: 'idle',
-    error: null as null | string,
+    error: null,
 };
 
 /*

@@ -17,5 +17,4 @@ const preview: Preview = {
     loaders: [mswLoader],
 };
 
-export const parameters = preview.parameters;
-
+export default preview;

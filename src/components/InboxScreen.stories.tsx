@@ -1,9 +1,7 @@
-import InboxScreen from './InboxScreen';
-
 import store from '../lib/store';
-import { rest } from 'msw';
-import { MockedState } from './TaskList.stories';
-import { Provider } from 'react-redux';
+import {rest} from 'msw';
+import {MockedState} from './TaskList.stories';
+import {Provider} from 'react-redux';
 
 import {
     fireEvent,
@@ -13,6 +11,7 @@ import {
 } from '@storybook/test';
 import {Meta} from "@storybook/react";
 import {TaskList} from "./TaskList.tsx";
+import {InboxScreen} from "./InboxScreen.tsx";
 
 export default {
     component: InboxScreen,
@@ -27,14 +26,14 @@ export const Default = {
             handlers: [
                 rest.get(
                     'https://jsonplaceholder.typicode.com/todos?userId=1',
-                    (_req, res, ctx) => {
+                    (_, res, ctx) => {
                         return res(ctx.json(MockedState.tasks));
                     }
                 ),
             ],
         },
     },
-    play: async ({ canvasElement }) => {
+    play: async ({canvasElement}) => {
         const canvas = within(canvasElement);
         // Waits for the component to transition from the loading state
         await waitForElementToBeRemoved(await canvas.findByTestId('loading'));
@@ -46,18 +45,19 @@ export const Default = {
             await fireEvent.click(canvas.getByLabelText('pinTask-3'));
         });
     },
-};
+} satisfies Meta<typeof TaskList>;
+
 export const Error = {
     parameters: {
         msw: {
             handlers: [
                 rest.get(
                     'https://jsonplaceholder.typicode.com/todos?userId=1',
-                    (_req, res, ctx) => {
+                    (_, res, ctx) => {
                         return res(ctx.status(403));
                     }
                 ),
             ],
         },
     },
-};
+} satisfies Meta<typeof TaskList>;

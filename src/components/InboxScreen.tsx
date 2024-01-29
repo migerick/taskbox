@@ -3,7 +3,7 @@ import {fetchTasks} from '../lib/store';
 import {TaskList} from './TaskList';
 import {useEffect} from "react";
 
-export default function InboxScreen() {
+export const InboxScreen = () => {
     const dispatch = useDispatch();
     // We're retrieving the error field from our updated store
     const {error} = useSelector((state) => state.taskbox);
