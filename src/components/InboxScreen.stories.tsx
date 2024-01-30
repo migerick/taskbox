@@ -10,7 +10,6 @@ import {
     waitForElementToBeRemoved
 } from '@storybook/test';
 import {Meta} from "@storybook/react";
-import {TaskList} from "./TaskList.tsx";
 import {InboxScreen} from "./InboxScreen.tsx";
 
 export default {
@@ -18,7 +17,7 @@ export default {
     title: 'InboxScreen',
     decorators: [(story) => <Provider store={store}>{story()}</Provider>],
     tags: ['autodocs'],
-} satisfies Meta<typeof TaskList>;
+} satisfies Meta<typeof InboxScreen>;
 
 export const Default = {
     parameters: {
@@ -45,7 +44,7 @@ export const Default = {
             await fireEvent.click(canvas.getByLabelText('pinTask-3'));
         });
     },
-} satisfies Meta<typeof TaskList>;
+} satisfies Meta<typeof InboxScreen>;
 
 export const Error = {
     parameters: {
@@ -60,4 +59,4 @@ export const Error = {
             ],
         },
     },
-} satisfies Meta<typeof TaskList>;
+} satisfies Meta<typeof InboxScreen>;
